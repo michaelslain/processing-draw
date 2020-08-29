@@ -1,0 +1,10 @@
+.cursor {
+    position: absolute;
+    opacity: 0.5;
+    border-style: solid;
+
+    &.ellipse,
+    &.circle {
+        border-radius: 50%;
+    }
+}

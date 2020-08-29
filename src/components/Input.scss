@@ -1,0 +1,39 @@
+.input-container {
+    .title {
+        color: grey;
+        margin-bottom: 5px;
+    }
+
+    .input {
+        padding: 10px;
+        border-radius: 5px;
+        outline: none;
+    }
+
+    .rgb-input-container {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        .rgb-label {
+            font-weight: bold;
+
+            &.red {
+                color: #d67654;
+            }
+            &.green {
+                color: #72c48c;
+            }
+            &.blue {
+                color: #5497d6;
+            }
+        }
+
+        .rgb-input {
+            width: 22px;
+            padding: 10px;
+            border-radius: 5px;
+            outline: none;
+        }
+    }
+}

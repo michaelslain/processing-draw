@@ -1,0 +1,16 @@
+.header {
+    width: 100vw;
+    height: 100px;
+    background: #e8e8e8;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .tools,
+    .other {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 80px;
+    }
+}

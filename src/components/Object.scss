@@ -1,0 +1,13 @@
+.object {
+    position: absolute;
+    border-style: solid;
+
+    &.ellipse,
+    &.circle {
+        border-radius: 50%;
+    }
+
+    &.line {
+        transform-origin: top left;
+    }
+}

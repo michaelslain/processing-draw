@@ -1,0 +1,12 @@
+.button {
+    cursor: pointer;
+    color: grey;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &.selected {
+        color: black;
+    }
+}
