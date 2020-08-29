@@ -11,63 +11,116 @@ export default function Pop({ openPop, handleTogglePop, DOM }) {
     let code = []
 
     code.push(`size(${window.innerWidth - 200}, ${window.innerHeight - 100});`)
+    code.push('noStroke();')
     DOM.forEach(object => {
-        switch (object.type) {
+        let {
+            x,
+            y,
+            width,
+            height,
+            radius,
+            strokeColor,
+            strokeWidth,
+            fill,
+            x2,
+            y2,
+            type,
+        } = object
+
+        switch (type) {
             case 'rect':
-                code.push(
-                    `fill(${object.fill[0]}, ${object.fill[1]}, ${object.fill[2]});`
-                )
-                if (object.strokeWidth > 0) {
+                x = Number(x)
+                y = Number(y)
+                width = Number(width)
+                height = Number(height)
+                strokeColor = [
+                    Number(strokeColor[0]),
+                    Number(strokeColor[1]),
+                    Number(strokeColor[2]),
+                ]
+                strokeWidth = Number(strokeWidth)
+                fill = [Number(fill[0]), Number(fill[1]), Number(fill[2])]
+
+                code.push(`fill(${fill[0]}, ${fill[1]}, ${fill[2]});`)
+
+                if (strokeWidth > 0) {
                     code.push(
-                        `stroke(${object.strokeColor[0]}, ${object.strokeColor[1]}, ${object.strokeColor[2]});`
+                        `stroke(${strokeColor[0]}, ${strokeColor[1]}, ${strokeColor[2]});`
                     )
-                    code.push(`strokeWeight(${object.strokeWidth});`)
-                }
-                code.push(
-                    `rect(${object.x}, ${object.y}, ${object.width}, ${object.height});`
-                )
+                    code.push(`strokeWeight(${strokeWidth});`)
+                } else code.push('noStroke();')
+
+                code.push(`rect(${x}, ${y}, ${width}, ${height});`)
                 break
             case 'ellipse':
-                code.push(
-                    `fill(${object.fill[0]}, ${object.fill[1]}, ${object.fill[2]});`
-                )
-                if (object.strokeWidth > 0) {
+                x = Number(x)
+                y = Number(y)
+                width = Number(width)
+                height = Number(height)
+                strokeColor = [
+                    Number(strokeColor[0]),
+                    Number(strokeColor[1]),
+                    Number(strokeColor[2]),
+                ]
+                strokeWidth = Number(strokeWidth)
+                fill = [Number(fill[0]), Number(fill[1]), Number(fill[2])]
+
+                code.push(`fill(${fill[0]}, ${fill[1]}, ${fill[2]});`)
+
+                if (strokeWidth > 0) {
                     code.push(
-                        `stroke(${object.strokeColor[0]}, ${object.strokeColor[1]}, ${object.strokeColor[2]});`
+                        `stroke(${strokeColor[0]}, ${strokeColor[1]}, ${strokeColor[2]});`
                     )
-                    code.push(`strokeWeight(${object.strokeWidth});`)
-                }
-                code.push(
-                    `ellipse(${object.x}, ${object.y}, ${object.width}, ${object.height});`
-                )
+                    code.push(`strokeWeight(${strokeWidth});`)
+                } else code.push('noStroke();')
+
+                code.push(`ellipse(${x}, ${y}, ${width}, ${height});`)
                 break
             case 'circle':
-                code.push(
-                    `fill(${object.fill[0]}, ${object.fill[1]}, ${object.fill[2]});`
-                )
-                if (object.strokeWidth > 0) {
+                x = Number(x)
+                y = Number(y)
+                radius = Number(radius)
+                strokeColor = [
+                    Number(strokeColor[0]),
+                    Number(strokeColor[1]),
+                    Number(strokeColor[2]),
+                ]
+                strokeWidth = Number(strokeWidth)
+                fill = [Number(fill[0]), Number(fill[1]), Number(fill[2])]
+
+                code.push(`fill(${fill[0]}, ${fill[1]}, ${fill[2]});`)
+
+                if (strokeWidth > 0) {
                     code.push(
-                        `stroke(${object.strokeColor[0]}, ${object.strokeColor[1]}, ${object.strokeColor[2]});`
+                        `stroke(${strokeColor[0]}, ${strokeColor[1]}, ${strokeColor[2]});`
                     )
-                    code.push(`strokeWeight(${object.strokeWidth});`)
-                }
+                    code.push(`strokeWeight(${strokeWidth});`)
+                } else code.push('noStroke();')
+
                 code.push(
-                    `circle(${object.x + object.radius / 2}, ${
-                        object.y + object.radius / 2
-                    }, ${object.radius});`
+                    `circle(${x + radius / 2}, ${y + radius / 2}, ${radius});`
                 )
                 break
             case 'line':
-                if (object.strokeWidth < 0) return
+                x = Number(x)
+                y = Number(y)
+                x2 = Number(x2)
+                y2 = Number(y2)
+                strokeColor = [
+                    Number(strokeColor[0]),
+                    Number(strokeColor[1]),
+                    Number(strokeColor[2]),
+                ]
+                strokeWidth = Number(strokeWidth)
+
+                if (strokeWidth < 0) return
 
                 code.push(
-                    `stroke(${object.strokeColor[0]}, ${object.strokeColor[1]}, ${object.strokeColor[2]});`
+                    `stroke(${strokeColor[0]}, ${strokeColor[1]}, ${strokeColor[2]});`
                 )
-                code.push(`strokeWeight(${object.strokeWidth});`)
+                code.push(`strokeWeight(${strokeWidth});`)
 
-                code.push(
-                    `line(${object.x}, ${object.y}, ${object.x2},${object.y2});`
-                )
+                code.push(`line(${x}, ${y}, ${x2},${y2});`)
                 break
         }
     })
