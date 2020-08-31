@@ -6,7 +6,9 @@
 }
 
 body {
-    overflow-x: hidden;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
 }
 
 .bottom-container {
